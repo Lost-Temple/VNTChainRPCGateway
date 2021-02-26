@@ -1,6 +1,5 @@
 package com.yunphant.vntchain.rpc.biz;
 
-import com.googlecode.jsonrpc4j.JsonRpcClientException;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 import com.yunphant.vntchain.rpc.entity.EthTransaction;
@@ -99,6 +98,6 @@ public class RpcBizV01 {
     }
 
     public String core_sendTransaction(EthTransaction ethTransaction) throws Throwable {
-            return vntChainMethods.core_sendTransaction(ethTransaction);
+        return vntChainMethods.core_sendTransaction(ethTransaction);
     }
 }

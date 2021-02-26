@@ -1,5 +1,8 @@
 package com.yunphant.vntchain.rpc.service;
 
+import com.googlecode.jsonrpc4j.JsonRpcClientException;
+import com.googlecode.jsonrpc4j.JsonRpcError;
+import com.googlecode.jsonrpc4j.JsonRpcErrors;
 import com.googlecode.jsonrpc4j.JsonRpcService;
 import com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceImpl;
 import com.yunphant.vntchain.rpc.biz.RpcBizV01;
@@ -22,77 +25,77 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
 
     @Override
     public String web3_clientVersion() throws Throwable {
-            return rpcBizV01.vnt_clientVersion();
+        return rpcBizV01.vnt_clientVersion();
     }
 
     @Override
     public String web3_sha3(String data) throws Throwable {
-            return rpcBizV01.vnt_sha3(data);
+        return rpcBizV01.vnt_sha3(data);
     }
 
     @Override
     public String net_version() throws Throwable {
-            return rpcBizV01.net_version();
+        return rpcBizV01.net_version();
     }
 
     @Override
     public Boolean net_listening() throws Throwable {
-            return rpcBizV01.net_listening();
+        return rpcBizV01.net_listening();
     }
 
     @Override
     public String net_peerCount() throws Throwable {
-            return rpcBizV01.net_peerCount();
+        return rpcBizV01.net_peerCount();
     }
 
     @Override
     public String eth_protocolVersion() throws Throwable {
-            return rpcBizV01.core_protocolVersion();
+        return rpcBizV01.core_protocolVersion();
     }
 
     @Override
     public Object eth_syncing() throws Throwable {
-            return rpcBizV01.core_syncing();
+        return rpcBizV01.core_syncing();
     }
 
     @Override
     public String eth_coinbase() throws Throwable {
-            return rpcBizV01.core_coinbase();
+        return rpcBizV01.core_coinbase();
     }
 
     @Override
     public String eth_gasPrice() throws Throwable {
-            return rpcBizV01.core_gasPrice();
+        return rpcBizV01.core_gasPrice();
     }
 
     @Override
     public ArrayList<String> eth_accounts() throws Throwable {
-            return rpcBizV01.core_accounts();
+        return rpcBizV01.core_accounts();
     }
 
     @Override
     public String eth_blockNumber() throws Throwable {
-            return rpcBizV01.core_blockNumber();
+        return rpcBizV01.core_blockNumber();
     }
 
     @Override
     public String eth_getBalance(String addr, String tag) throws Throwable {
-            return rpcBizV01.core_getBalance(addr, tag);
+        return rpcBizV01.core_getBalance(addr, tag);
     }
 
     @Override
     public String eth_getStorageAt(String addr, String pos, String tag) throws Throwable {
-            return rpcBizV01.core_getStorageAt(addr, pos, tag);
+        return rpcBizV01.core_getStorageAt(addr, pos, tag);
     }
 
     @Override
     public String eth_getTransactionCount(String addr, String tag) throws Throwable {
-            return rpcBizV01.core_getTransactionCount(addr, tag);
+        return rpcBizV01.core_getTransactionCount(addr, tag);
     }
 
     @Override
     public String eth_getBlockTransactionCountByHash(String hash) throws Throwable {
-            return rpcBizV01.core_getBlockTransactionCountByHash(hash);
+        return rpcBizV01.core_getBlockTransactionCountByHash(hash);
     }
 
     @Override
@@ -111,7 +114,15 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
     }
 
     @Override
+//    @JsonRpcErrors({
+//            @JsonRpcError(exception=JsonRpcClientException.class, code=-32000), @JsonRpcError(exception=Throwable.class,code=-32000),
+//    })
     public String eth_sendTransaction(EthTransaction ethTransaction) throws Throwable {
-        return rpcBizV01.core_sendTransaction(ethTransaction);
+        try {
+            return rpcBizV01.core_sendTransaction(ethTransaction);
+        } catch (JsonRpcClientException e) {
+            LOGGER.error("message:" + e.getMessage() + ", code:" + e.getCode());
+            throw e;
+        }
     }
 }

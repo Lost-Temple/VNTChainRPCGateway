@@ -29,9 +29,10 @@ VNT Cain RPC Gateway
 
 #### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+错误码说明
+-32700	Parse error语法解析错误	服务端接收到无效的json。该错误发送于服务器尝试解析json文本
+-32600	Invalid Request无效请求	发送的json不是一个有效的请求对象。
+-32601	Method not found找不到方法	该方法不存在或无效
+-32602	Invalid params无效的参数	无效的方法参数。
+-32603	Internal error内部错误	JSON-RPC内部错误。
+-32000 to -32099	Server error服务端错误	预留用于自定义的服务器错误。
