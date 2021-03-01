@@ -1,14 +1,9 @@
 package com.yunphant.vntchain.rpc.service;
 
-import com.googlecode.jsonrpc4j.JsonRpcClientException;
-import com.googlecode.jsonrpc4j.JsonRpcError;
-import com.googlecode.jsonrpc4j.JsonRpcErrors;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.googlecode.jsonrpc4j.JsonRpcService;
 import com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceImpl;
 import com.yunphant.vntchain.rpc.biz.RpcBizV01;
-import com.yunphant.vntchain.rpc.entity.EthTransaction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +13,6 @@ import java.util.ArrayList;
 @Service
 @AutoJsonRpcServiceImpl
 public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EthChainRpcAPIImplV01.class);
-
     @Autowired
     RpcBizV01 rpcBizV01;
 
@@ -114,15 +107,52 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
     }
 
     @Override
-//    @JsonRpcErrors({
-//            @JsonRpcError(exception=JsonRpcClientException.class, code=-32000), @JsonRpcError(exception=Throwable.class,code=-32000),
-//    })
-    public String eth_sendTransaction(EthTransaction ethTransaction) throws Throwable {
-        try {
-            return rpcBizV01.core_sendTransaction(ethTransaction);
-        } catch (JsonRpcClientException e) {
-            LOGGER.error("message:" + e.getMessage() + ", code:" + e.getCode());
-            throw e;
-        }
+    public String eth_sendTransaction(JsonNode obj) throws Throwable {
+        return rpcBizV01.core_sendTransaction(obj);
+    }
+
+    @Override
+    public String eth_sendRawTransaction(String data) throws Throwable {
+        return rpcBizV01.core_sendRawTransaction(data);
+    }
+
+    @Override
+    public String eth_call(JsonNode obj, String tag) throws Throwable {
+        return rpcBizV01.core_call(obj, tag);
+    }
+
+    @Override
+    public String eth_estimateGas(JsonNode obj) throws Throwable {
+        return rpcBizV01.core_estimateGas(obj);
+    }
+
+    @Override
+    public JsonNode eth_getBlockByHash(String hash, Boolean full) throws Throwable {
+        return rpcBizV01.core_getBlockByHash(hash, full);
+    }
+
+    @Override
+    public JsonNode eth_getBlockByNumber(String number, Boolean full) throws Throwable {
+        return rpcBizV01.core_getBlockByNumber(number, full);
+    }
+
+    @Override
+    public JsonNode eth_getTransactionByHash(String hash) throws Throwable {
+        return rpcBizV01.core_getTransactionByHash(hash);
+    }
+
+    @Override
+    public JsonNode eth_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable {
+        return rpcBizV01.core_getTransactionByBlockHashAndIndex(hash, index);
+    }
+
+    @Override
+    public JsonNode eth_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable {
+        return rpcBizV01.core_getTransactionByBlockNumberAndIndex(number, index);
+    }
+
+    @Override
+    public JsonNode eth_getTransactionReceipt(String hash) throws Throwable {
+        return rpcBizV01.core_getTransactionReceipt(hash);
     }
 }

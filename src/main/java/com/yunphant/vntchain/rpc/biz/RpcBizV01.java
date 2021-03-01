@@ -1,8 +1,8 @@
 package com.yunphant.vntchain.rpc.biz;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
-import com.yunphant.vntchain.rpc.entity.EthTransaction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -97,7 +97,43 @@ public class RpcBizV01 {
         return vntChainMethods.core_sign(addr, data);
     }
 
-    public String core_sendTransaction(EthTransaction ethTransaction) throws Throwable {
-        return vntChainMethods.core_sendTransaction(ethTransaction);
+    public String core_sendTransaction(JsonNode obj) throws Throwable {
+        return vntChainMethods.core_sendTransaction(obj);
+    }
+
+    public String core_sendRawTransaction(String data) throws Throwable {
+        return vntChainMethods.core_sendRawTransaction(data);
+    }
+
+    public String core_call(JsonNode obj, String tag) throws Throwable {
+        return vntChainMethods.core_call(obj, tag);
+    }
+
+    public String core_estimateGas(JsonNode obj) throws Throwable {
+        return vntChainMethods.core_estimateGas(obj);
+    }
+
+    public JsonNode core_getBlockByHash(String hash, Boolean full) throws Throwable {
+        return vntChainMethods.core_getBlockByHash(hash, full);
+    }
+
+    public JsonNode core_getBlockByNumber(String number, Boolean full) throws Throwable {
+        return vntChainMethods.core_getBlockByNumber(number, full);
+    }
+
+    public JsonNode core_getTransactionByHash(String hash) throws Throwable {
+        return vntChainMethods.core_getTransactionByHash(hash);
+    }
+
+    public JsonNode core_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable {
+        return vntChainMethods.core_getTransactionByBlockHashAndIndex(hash, index);
+    }
+
+    public JsonNode core_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable {
+        return vntChainMethods.core_getTransactionByBlockNumberAndIndex(number, index);
+    }
+
+    public JsonNode core_getTransactionReceipt(String hash) throws Throwable {
+        return vntChainMethods.core_getTransactionReceipt(hash);
     }
 }

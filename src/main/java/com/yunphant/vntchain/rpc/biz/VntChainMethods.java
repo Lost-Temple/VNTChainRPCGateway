@@ -1,7 +1,6 @@
 package com.yunphant.vntchain.rpc.biz;
 
-import com.googlecode.jsonrpc4j.JsonRpcClientException;
-import com.yunphant.vntchain.rpc.entity.EthTransaction;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
 
@@ -29,5 +28,14 @@ public interface VntChainMethods {
     String core_getBlockTransactionCountByNumber(String blockNum) throws Throwable;
     String core_getCode(String addr, String tag) throws Throwable;
     String core_sign(String addr, String data) throws Throwable;
-    String core_sendTransaction(EthTransaction ethTransaction) throws Throwable;
+    String core_sendTransaction(JsonNode obj) throws Throwable;
+    String core_sendRawTransaction(String data) throws Throwable;
+    String core_call(JsonNode obj, String tag) throws Throwable;
+    String core_estimateGas(JsonNode obj) throws Throwable;
+    JsonNode core_getBlockByHash(String hash, Boolean full) throws Throwable;
+    JsonNode core_getBlockByNumber(String number, Boolean full) throws Throwable;
+    JsonNode core_getTransactionByHash(String hash) throws Throwable;
+    JsonNode core_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable;
+    JsonNode core_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable;
+    JsonNode core_getTransactionReceipt(String hash) throws Throwable;
 }

@@ -1,6 +1,6 @@
 package com.yunphant.vntchain.rpc.service;
 
-import com.yunphant.vntchain.rpc.entity.EthTransaction;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
 
@@ -23,5 +23,14 @@ public interface EthChainRpcAPI {
     String eth_getBlockTransactionCountByNumber(String hash) throws Throwable;                          // Returns the number of transactions in a block from a block matching the given block hash.
     String eth_getCode(String addr, String tag) throws Throwable;                                       // Returns code at a given address.
     String eth_sign(String addr, String data) throws Throwable;                                         // Returns DATA: Signature
-    String eth_sendTransaction(EthTransaction ethTransaction) throws Throwable;                         // Returns DATA, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+    String eth_sendTransaction(JsonNode obj) throws Throwable;                         // Returns DATA, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+    String eth_sendRawTransaction(String data) throws Throwable;                                        // Creates new message call transaction or a contract creation for signed transactions.
+    String eth_call(JsonNode obj, String tag) throws Throwable;                        // Executes a new message call immediately without creating a transaction on the block chain.
+    String eth_estimateGas(JsonNode obj) throws Throwable;                             // Returns QUANTITY - the amount of gas used.
+    JsonNode eth_getBlockByHash(String hash, Boolean full) throws Throwable;                            // Returns information about a block by hash.
+    JsonNode eth_getBlockByNumber(String number, Boolean full) throws Throwable;                        // Returns information about a block by block number.
+    JsonNode eth_getTransactionByHash(String hash) throws Throwable;                                    // Returns the information about a transaction requested by transaction hash.
+    JsonNode eth_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable;         // Returns information about a transaction by block hash and transaction index position.
+    JsonNode eth_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable;     // Returns information about a transaction by block number and transaction index position.
+    JsonNode eth_getTransactionReceipt(String hash) throws Throwable;                                   // Returns the receipt of a transaction by transaction hash.
 }
