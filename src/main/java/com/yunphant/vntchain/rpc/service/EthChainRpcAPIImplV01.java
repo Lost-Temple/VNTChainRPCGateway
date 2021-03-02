@@ -7,6 +7,7 @@ import com.yunphant.vntchain.rpc.biz.RpcBizV01;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 @JsonRpcService(value = "v01")
@@ -154,5 +155,75 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
     @Override
     public JsonNode eth_getTransactionReceipt(String hash) throws Throwable {
         return rpcBizV01.core_getTransactionReceipt(hash);
+    }
+
+    @Override
+    public String eth_newFilter(JsonNode obj) throws Throwable {
+        return rpcBizV01.core_newFilter(obj);
+    }
+
+    @Override
+    public String eth_newBlockFilter() throws Throwable {
+        return rpcBizV01.core_newBlockFilter();
+    }
+
+    @Override
+    public String eth_newPendingTransactionFilter() throws Throwable {
+        return rpcBizV01.core_newPendingTransactionFilter();
+    }
+
+    @Override
+    public Boolean eth_uninstallFilter(String id) throws Throwable {
+        return rpcBizV01.core_uninstallFilter(id);
+    }
+
+    @Override
+    public JsonNode eth_getFilterChanges(String id) throws Throwable {
+        return rpcBizV01.core_getFilterChanges(id);
+    }
+
+    @Override
+    public JsonNode eth_getFilterLogs(String id) throws Throwable {
+        return rpcBizV01.core_getFilterLogs(id);
+    }
+
+    @Override
+    public JsonNode eth_getLogs(JsonNode obj) throws Throwable {
+        return rpcBizV01.core_getLogs(obj);
+    }
+
+    @Override
+    public String shh_version() throws Throwable {
+        return rpcBizV01.shh_version();
+    }
+
+    @Override
+    public Boolean shh_post(JsonNode obj) throws Throwable {
+        return rpcBizV01.shh_post(obj);
+    }
+
+    @Override
+    public ArrayList<JsonNode> core_getAllCandidates() throws Throwable {
+        return rpcBizV01.core_getAllCandidates();
+    }
+
+    @Override
+    public JsonNode core_getStake(String addr) throws Throwable {
+        return rpcBizV01.core_getStake(addr);
+    }
+
+    @Override
+    public JsonNode core_getVoter(String addr) throws Throwable {
+        return rpcBizV01.core_getVoter(addr);
+    }
+
+    @Override
+    public BigInteger core_getRestVNTBounty() throws Throwable {
+        return rpcBizV01.core_getRestVNTBounty();
+    }
+
+    @Override
+    public String eth_chainId() {
+        return "0x" + rpcBizV01.eth_chainId().toString(16);
     }
 }

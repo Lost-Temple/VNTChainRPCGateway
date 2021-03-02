@@ -6,6 +6,7 @@ import com.googlecode.jsonrpc4j.ProxyUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,16 +15,19 @@ import java.util.Map;
 
 @Component
 public class RpcBizV01 {
-    public RpcBizV01(@Value("${vntchain.rpc.url}") String rpcUrl) throws MalformedURLException {
+    public RpcBizV01(@Value("${vntchain.rpc.url}") String rpcUrl, @Value("${vntchain.chainid}")BigInteger chainId) throws MalformedURLException {
         Map<String, String> headers = new HashMap<String, String>(1);
         headers.put("Content-Type", "application/json");
 
         client = new JsonRpcHttpClient(new URL(rpcUrl), headers);
         vntChainMethods = ProxyUtil.createClientProxy(getClass().getClassLoader(), VntChainMethods.class, client);
+
+        this.chainId = chainId;
     }
 
     private JsonRpcHttpClient client;
     VntChainMethods vntChainMethods;
+    BigInteger chainId;
 
     public String vnt_clientVersion() throws Throwable {
         return vntChainMethods.vnt_clientVersion();
@@ -135,5 +139,61 @@ public class RpcBizV01 {
 
     public JsonNode core_getTransactionReceipt(String hash) throws Throwable {
         return vntChainMethods.core_getTransactionReceipt(hash);
+    }
+
+    public String core_newFilter(JsonNode obj) throws Throwable {
+        return vntChainMethods.core_newFilter(obj);
+    }
+
+    public String core_newBlockFilter() throws Throwable {
+        return vntChainMethods.core_newBlockFilter();
+    }
+
+    public String core_newPendingTransactionFilter() throws Throwable {
+        return vntChainMethods.core_newPendingTransactionFilter();
+    }
+
+    public Boolean core_uninstallFilter(String id) throws Throwable {
+        return vntChainMethods.core_uninstallFilter(id);
+    }
+
+    public JsonNode core_getFilterChanges(String id) throws Throwable {
+        return vntChainMethods.core_getFilterChanges(id);
+    }
+
+    public JsonNode core_getFilterLogs(String id) throws Throwable {
+        return vntChainMethods.core_getFilterLogs(id);
+    }
+
+    public JsonNode core_getLogs(JsonNode obj) throws Throwable {
+        return vntChainMethods.core_getLogs(obj);
+    }
+
+    public String shh_version() throws Throwable {
+        return vntChainMethods.shh_version();
+    }
+
+    public Boolean shh_post(JsonNode obj) throws Throwable {
+        return vntChainMethods.shh_post(obj);
+    }
+
+    public ArrayList<JsonNode> core_getAllCandidates() throws Throwable {
+        return vntChainMethods.core_getAllCandidates();
+    }
+
+    public JsonNode core_getStake(String addr) throws Throwable {
+        return vntChainMethods.core_getStake(addr);
+    }
+
+    public JsonNode core_getVoter(String addr) throws Throwable {
+        return vntChainMethods.core_getVoter(addr);
+    }
+
+    public BigInteger core_getRestVNTBounty() throws Throwable {
+        return vntChainMethods.core_getRestVNTBounty();
+    }
+
+    public BigInteger eth_chainId() {
+        return this.chainId;
     }
 }
