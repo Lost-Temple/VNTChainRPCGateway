@@ -1,8 +1,11 @@
 package com.yunphant.vntchain.rpc.biz;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import com.googlecode.jsonrpc4j.ProxyUtil;
+import com.yunphant.vntchain.rpc.common.Constants;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +18,8 @@ import java.util.Map;
 
 @Component
 public class RpcBizV01 {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(RpcBizV01.class);
+
     public RpcBizV01(@Value("${vntchain.rpc.url}") String rpcUrl, @Value("${vntchain.chainid}")BigInteger chainId) throws MalformedURLException {
         Map<String, String> headers = new HashMap<String, String>(1);
         headers.put("Content-Type", "application/json");
@@ -110,6 +115,21 @@ public class RpcBizV01 {
     }
 
     public String core_call(JsonNode obj, String tag) throws Throwable {
+        String to = obj.get("to").textValue();
+        String data = obj.get("data").textValue();
+        String methodId = data.substring(0, 10);
+        switch (methodId) {
+            case Constants.ETH_BALANCE_CHECKER_METHODID_BALANCE_OF:
+                //调用智能合约内部的balanceOf(address)方法,但代币的智能合约好像是不符合
+                LOGGER.debug("*****************代币智能合约内部的balanceOf(address)了****************");
+                LOGGER.debug("to:" + to);
+                data = data.replace(Constants.ETH_BALANCE_CHECKER_METHODID_BALANCE_OF, Constants.TOKEN_METHODID_GET_AMOUNT);
+                ObjectNode objectNode = (ObjectNode) obj;
+                objectNode.put("data",data);
+                return vntChainMethods.core_call(objectNode, tag);
+            case Constants.ETH_BALANCE_CHECKER_METHODID_BALANCES:
+                break;
+        }
         return vntChainMethods.core_call(obj, tag);
     }
 

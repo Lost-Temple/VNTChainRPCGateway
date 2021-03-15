@@ -39,3 +39,95 @@ VNTChain->VNTChainRPCGateway->Metamask
 4.-32602	Invalid params无效的参数	无效的方法参数。
 5.-32603	Internal error内部错误	JSON-RPC内部错误。
 6.-32000 to -32099	Server error服务端错误	预留用于自定义的服务器错误。
+
+#### 代币相关
+1.GetAmount(address)
+调用实例
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "eth_call",
+  "params": [{
+    "to": "0x1a6301de033a4bca4a443fccd0f35f3b9dac0744",
+    "data": "0xee3884ac000000000000000000000000a8c6a0897785fecb954b12bbd4feab5ce2d8a7ca"
+  },
+    "latest"
+  ]
+}
+```
+
+2.GetTotalSupply()
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "core_call",
+    "params": [{
+	  "to": "0x1a6301de033a4bca4a443fccd0f35f3b9dac0744",
+	  "data": "0xc2bb661e"
+    },
+	"latest"
+    ]
+}
+```
+
+3.GetSymbol()
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "core_call",
+    "params": [{
+	  "to": "0x1a6301de033a4bca4a443fccd0f35f3b9dac0744",
+	  "data": "0xc0497ca6"
+    },
+	"latest"
+    ]
+}
+```
+
+4.GetDecimals()
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "core_call",
+    "params": [{
+	  "to": "0x1a6301de033a4bca4a443fccd0f35f3b9dac0744",
+	  "data": "0xa697c77e"
+    },
+	"latest"
+    ]
+}
+```
+
+5.GetTokenName()
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "core_call",
+  "params": [{
+    "to": "0x1a6301de033a4bca4a443fccd0f35f3b9dac0744",
+    "data": "0x388981ad"
+  },
+    "latest"
+  ]
+}
+```
+
+ERC20接口
+```
+contract ERC20 {
+    function totalSupply() constant returns (uint theTotalSupply);
+    function balanceOf(address _owner) constant returns (uint balance);
+    function transfer(address _to, uint _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint _value) returns (bool success);
+    function approve(address _spender, uint _value) returns (bool success);
+    function allowance(address _owner, address _spender) constant returns (uint remaining);
+    event Transfer(address indexed _from, address indexed _to, uint _value);
+    event Approval(address indexed _owner, address indexed _spender, uint _value);
+}
+```
+
