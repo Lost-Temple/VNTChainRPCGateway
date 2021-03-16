@@ -44,8 +44,5 @@ public interface EthChainRpcAPI {
     String shh_version() throws Throwable;                                                              // Returns String - The current whisper protocol version
     Boolean shh_post(JsonNode obj) throws Throwable;                                                    // Returns Boolean - returns true if the message was send, otherwise false.
     ArrayList<JsonNode> core_getAllCandidates() throws Throwable;                                       // Returns a list of all the witness candidates.
-    JsonNode core_getStake(String addr) throws Throwable;                                               // Returns stake information of a user.
-    JsonNode core_getVoter(String addr) throws Throwable;                                               // Returns a voter's information.
-    BigInteger core_getRestVNTBounty() throws Throwable;                                                // Returns a value of the left VNT bounty.
     String eth_chainId() throws Throwable;                                                              // Returns a value of chain id. hex. exp: 0x1
 }

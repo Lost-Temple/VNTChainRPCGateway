@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-@JsonRpcService(value = "eth/v01")
+@JsonRpcService(value = "vnt/v01")
 @Service
 @AutoJsonRpcServiceImpl
-public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
+public class VntChainRpcAPIImplV01 implements VntChainRpcAPI {
     @Autowired
     RpcBizV01 rpcBizV01;
 
     @Override
-    public String web3_clientVersion() throws Throwable {
+    public String vnt_clientVersion() throws Throwable {
         return rpcBizV01.vnt_clientVersion();
     }
 
     @Override
-    public String web3_sha3(String data) throws Throwable {
+    public String vnt_sha3(String data) throws Throwable {
         return rpcBizV01.vnt_sha3(data);
     }
 
@@ -43,152 +43,152 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
     }
 
     @Override
-    public String eth_protocolVersion() throws Throwable {
+    public String core_protocolVersion() throws Throwable {
         return rpcBizV01.core_protocolVersion();
     }
 
     @Override
-    public Object eth_syncing() throws Throwable {
+    public Object core_syncing() throws Throwable {
         return rpcBizV01.core_syncing();
     }
 
     @Override
-    public String eth_coinbase() throws Throwable {
+    public String core_coinbase() throws Throwable {
         return rpcBizV01.core_coinbase();
     }
 
     @Override
-    public String eth_gasPrice() throws Throwable {
+    public String core_gasPrice() throws Throwable {
         return rpcBizV01.core_gasPrice();
     }
 
     @Override
-    public ArrayList<String> eth_accounts() throws Throwable {
+    public ArrayList<String> core_accounts() throws Throwable {
         return rpcBizV01.core_accounts();
     }
 
     @Override
-    public String eth_blockNumber() throws Throwable {
+    public String core_blockNumber() throws Throwable {
         return rpcBizV01.core_blockNumber();
     }
 
     @Override
-    public String eth_getBalance(String addr, String tag) throws Throwable {
+    public String core_getBalance(String addr, String tag) throws Throwable {
         return rpcBizV01.core_getBalance(addr, tag);
     }
 
     @Override
-    public String eth_getStorageAt(String addr, String pos, String tag) throws Throwable {
+    public String core_getStorageAt(String addr, String pos, String tag) throws Throwable {
         return rpcBizV01.core_getStorageAt(addr, pos, tag);
     }
 
     @Override
-    public String eth_getTransactionCount(String addr, String tag) throws Throwable {
+    public String core_getTransactionCount(String addr, String tag) throws Throwable {
         return rpcBizV01.core_getTransactionCount(addr, tag);
     }
 
     @Override
-    public String eth_getBlockTransactionCountByHash(String hash) throws Throwable {
+    public String core_getBlockTransactionCountByHash(String hash) throws Throwable {
         return rpcBizV01.core_getBlockTransactionCountByHash(hash);
     }
 
     @Override
-    public String eth_getBlockTransactionCountByNumber(String blockNum) throws Throwable {
+    public String core_getBlockTransactionCountByNumber(String blockNum) throws Throwable {
         return rpcBizV01.core_getBlockTransactionCountByNumber(blockNum);
     }
 
     @Override
-    public String eth_getCode(String addr, String tag) throws Throwable {
+    public String core_getCode(String addr, String tag) throws Throwable {
         return rpcBizV01.core_getCode(addr, tag);
     }
 
     @Override
-    public String eth_sign(String addr, String data) throws Throwable {
+    public String core_sign(String addr, String data) throws Throwable {
         return rpcBizV01.core_sign(addr, data);
     }
 
     @Override
-    public String eth_sendTransaction(JsonNode obj) throws Throwable {
+    public String core_sendTransaction(JsonNode obj) throws Throwable {
         return rpcBizV01.core_sendTransaction(obj);
     }
 
     @Override
-    public String eth_sendRawTransaction(String data) throws Throwable {
+    public String core_sendRawTransaction(String data) throws Throwable {
         return rpcBizV01.core_sendRawTransaction(data);
     }
 
     @Override
-    public String eth_call(JsonNode obj, String tag) throws Throwable {
+    public String core_call(JsonNode obj, String tag) throws Throwable {
         return rpcBizV01.core_call(obj, tag);
     }
 
     @Override
-    public String eth_estimateGas(JsonNode obj) throws Throwable {
+    public String core_estimateGas(JsonNode obj) throws Throwable {
         return rpcBizV01.core_estimateGas(obj);
     }
 
     @Override
-    public JsonNode eth_getBlockByHash(String hash, Boolean full) throws Throwable {
+    public JsonNode core_getBlockByHash(String hash, Boolean full) throws Throwable {
         return rpcBizV01.core_getBlockByHash(hash, full);
     }
 
     @Override
-    public JsonNode eth_getBlockByNumber(String number, Boolean full) throws Throwable {
+    public JsonNode core_getBlockByNumber(String number, Boolean full) throws Throwable {
         return rpcBizV01.core_getBlockByNumber(number, full);
     }
 
     @Override
-    public JsonNode eth_getTransactionByHash(String hash) throws Throwable {
+    public JsonNode core_getTransactionByHash(String hash) throws Throwable {
         return rpcBizV01.core_getTransactionByHash(hash);
     }
 
     @Override
-    public JsonNode eth_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable {
+    public JsonNode core_getTransactionByBlockHashAndIndex(String hash, String index) throws Throwable {
         return rpcBizV01.core_getTransactionByBlockHashAndIndex(hash, index);
     }
 
     @Override
-    public JsonNode eth_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable {
+    public JsonNode core_getTransactionByBlockNumberAndIndex(String number, String index) throws Throwable {
         return rpcBizV01.core_getTransactionByBlockNumberAndIndex(number, index);
     }
 
     @Override
-    public JsonNode eth_getTransactionReceipt(String hash) throws Throwable {
+    public JsonNode core_getTransactionReceipt(String hash) throws Throwable {
         return rpcBizV01.core_getTransactionReceipt(hash);
     }
 
     @Override
-    public String eth_newFilter(JsonNode obj) throws Throwable {
+    public String core_newFilter(JsonNode obj) throws Throwable {
         return rpcBizV01.core_newFilter(obj);
     }
 
     @Override
-    public String eth_newBlockFilter() throws Throwable {
+    public String core_newBlockFilter() throws Throwable {
         return rpcBizV01.core_newBlockFilter();
     }
 
     @Override
-    public String eth_newPendingTransactionFilter() throws Throwable {
+    public String core_newPendingTransactionFilter() throws Throwable {
         return rpcBizV01.core_newPendingTransactionFilter();
     }
 
     @Override
-    public Boolean eth_uninstallFilter(String id) throws Throwable {
+    public Boolean core_uninstallFilter(String id) throws Throwable {
         return rpcBizV01.core_uninstallFilter(id);
     }
 
     @Override
-    public JsonNode eth_getFilterChanges(String id) throws Throwable {
+    public JsonNode core_getFilterChanges(String id) throws Throwable {
         return rpcBizV01.core_getFilterChanges(id);
     }
 
     @Override
-    public JsonNode eth_getFilterLogs(String id) throws Throwable {
+    public JsonNode core_getFilterLogs(String id) throws Throwable {
         return rpcBizV01.core_getFilterLogs(id);
     }
 
     @Override
-    public JsonNode eth_getLogs(JsonNode obj) throws Throwable {
+    public JsonNode core_getLogs(JsonNode obj) throws Throwable {
         return rpcBizV01.core_getLogs(obj);
     }
 
@@ -208,7 +208,22 @@ public class EthChainRpcAPIImplV01 implements EthChainRpcAPI {
     }
 
     @Override
-    public String eth_chainId() {
+    public JsonNode core_getStake(String addr) throws Throwable {
+        return rpcBizV01.core_getStake(addr);
+    }
+
+    @Override
+    public JsonNode core_getVoter(String addr) throws Throwable {
+        return rpcBizV01.core_getVoter(addr);
+    }
+
+    @Override
+    public BigInteger core_getRestVNTBounty() throws Throwable {
+        return rpcBizV01.core_getRestVNTBounty();
+    }
+
+    @Override
+    public String core_chainId() {
         return "0x" + rpcBizV01.eth_chainId().toString(16);
     }
 }
