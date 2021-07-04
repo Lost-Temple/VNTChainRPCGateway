@@ -18,9 +18,13 @@ VNTChain->VNTChainRPCGateway->Metamask
 
 #### 使用说明
 
-1.  在Metamask中自定义RPC URL为此项目运行的地址+端口+\v01 例:http://localhost:8881/v01
+#####Metamask使用
+
+1.  在Metamask中自定义RPC URL为此项目运行的地址+端口+/eht/v01 例:http://localhost:8881/eth/v01
 2.  chain id , 如主网则填 1, 测试网则填2, 货币符号填VNT
 3.  保存
+
+#####Postman直接访问VNT的RPC RUL为此项目运行的地址+端口+/vnt/v01 例:http://localhost:8881/vnt/v01
 
 #### 参与贡献
 
